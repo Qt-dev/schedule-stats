@@ -11,7 +11,7 @@ StatsBuilder.prototype = {
   init: function(){
     this.setPerSummaryStats();
     this.setTodoDoneStats();
-    this.setStats("Total", this.events);
+    this.setStats("Total", this.events, "Others");
   },
   setTodoDoneStats: function(){
     var sortedEvents = this.sortTodoDone();
