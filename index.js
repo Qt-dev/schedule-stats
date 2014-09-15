@@ -4,6 +4,7 @@ var express = require('express');
 var config = {
   port: 3000
 }
+global.KEYS = require('./config.json');
 
 var app = express();
 
