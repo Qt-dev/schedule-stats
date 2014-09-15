@@ -15,13 +15,13 @@ StatsBuilder.prototype = {
   },
   setTodoDoneStats: function(){
     var sortedEvents = this.sortTodoDone();
-    this.setStats("Passed hours", sortedEvents.doneEvents);
-    this.setStats("Hours to come", sortedEvents.todoEvents);
+    this.setStats("Passed hours", sortedEvents.doneEvents, "Per Time");
+    this.setStats("Hours to come", sortedEvents.todoEvents, "Per Time");
   },
   setPerSummaryStats: function(){
     var sortedEvents = this.sortPerSummary();
     for(var summary in sortedEvents){
-      this.setStats(summary, sortedEvents[summary]);
+      this.setStats(summary, sortedEvents[summary], "Per title");
     }
   },
   sortTodoDone: function(){
@@ -47,9 +47,10 @@ StatsBuilder.prototype = {
     })
     return sorted
   },
-  setStats: function(title, events){
+  setStats: function(title, events, group){
     var subset = new Subset(events);
-    this.stats[title] = subset.stats;
+    this.stats[group] = this.stats[group] || {};
+    this.stats[group][title] = subset.stats;
   }
 }
 
