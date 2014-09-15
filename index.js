@@ -4,6 +4,8 @@ var express = require('express');
 var config = {
   port: 3000
 }
+global.KEYS = require('./config.json');
+global.helpers = require(__dirname + '/config/helpers');
 
 var app = express();
 
@@ -15,6 +17,7 @@ app.use('/', router);
 // Views
 app.set('view engine', 'jade')
 app.set('views', __dirname + '/app/views');
+app.use(express.static('public'));
 
 if(!module.parent){
   app.set('port', process.env.PORT || config.port);
