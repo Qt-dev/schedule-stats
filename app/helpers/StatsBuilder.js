@@ -90,9 +90,12 @@ Subset.prototype = {
 
   /* TOOLS */
   countEventDuration: function(event){
-    var start = new Date(event.start.dateTime).getHours();
-    var end = new Date(event.end.dateTime).getHours();
-    return end - start;
+    var start = new Date(event.start.dateTime).valueOf();
+    var end = new Date(event.end.dateTime).valueOf();
+    var duration = end - start;
+
+    duration = duration / (1000*60*60)
+    return duration;
   },
   countTotalHours: function(events){
     var hours = 0;
