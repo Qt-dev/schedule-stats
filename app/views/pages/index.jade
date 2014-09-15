@@ -7,22 +7,27 @@ block content
   h1
     block title
   
-  ul
-    each subset, subsetTitle in eventList.stats
-      li.subset
-        h3.subset-title= subsetTitle
-        ul
-          each stat, statTitle in subset
-            li.stat
-              h4.stat-title= statTitle
-              - if(typeof(stat) === 'object')
-                ul
-                  each subStat, subStatKey in stat
-                    li.substat
-                      h5.substat-title=subStatKey
-                      p= subStat
-              - else
-                p= stat
+  each group, groupTitle in stats
+    div.group
+      h2= groupTitle
+
+      ul
+        each subset, subsetTitle in group
+          li.subset
+            h3.subset-title= subsetTitle
+            ul
+              each stat, statTitle in subset
+                li.stat
+                  h4.stat-title= statTitle
+                  - if(typeof(stat) === 'object')
+                    ul
+                      each subStat, subStatKey in stat
+                        li.substat
+                          h5.substat-title=subStatKey
+                          p= subStat
+                  - else
+                    p= stat
+
 
 
 

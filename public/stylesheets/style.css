@@ -5,11 +5,30 @@
 }
 
 body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.group {
+  background-color: #f9f9f9;
+  width: 96%;
+  float:left;
+  margin: 2%;
+  margin-top: 0;
+}
+
+.group h2 {
+  text-align: center;
   background-color: #f1f1f1;
+  margin: 0;
+  padding: 20px;
+  border-bottom: 1px solid midnightblue;
 }
 
 h1 {
   text-align: center;
+  color: midnightblue;
 }
 
 ul {
@@ -22,14 +41,15 @@ ul p {
 
 li.subset {
   display:block;
-  background-color: DarkBlue;
-  color: white;
+  background-color: #e1e1e1;
+
   border-radius: 2px;
   padding: 15px;
   min-width: 250px;
   list-style: none;
   margin: 20px;
   float:left;
+  box-shadow: 0 0 2px 1px #d3d3d3;
 }
 
 h3.subset-title {
