@@ -8,14 +8,23 @@ block content
     block title
   
   ul
-    each stat, key in eventList.stats
+    each subset, subsetTitle in eventList.stats
       li
-        h3= key
-        - if(typeof(stat) === 'object')
-          ul
-            each subStat, subStatKey in stat
-              li
-                h5=subStatKey
-                p= subStat
-        - else
-          p= stat
+        h3= subsetTitle
+        ul
+          each stat, statTitle in subset
+            li
+              h4= statTitle
+              - if(typeof(stat) === 'object')
+                ul
+                  each subStat, subStatKey in stat
+                    li
+                      h5=subStatKey
+                      p= subStat
+              - else
+                p= stat
+
+
+
+
+
