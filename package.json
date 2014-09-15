@@ -1,0 +1,11 @@
+{
+  "name": "schedule-stats",
+  "version": "0.0.0",
+  "description": "A stats creating app for google calendar schedules",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "quentin@devauchelle.eu",
+  "license": "MIT"
+}
