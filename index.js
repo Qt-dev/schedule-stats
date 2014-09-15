@@ -4,7 +4,10 @@ var express = require('express');
 var config = {
   port: 3000
 }
-global.KEYS = require('./config.json');
+global.KEYS = {
+  API: process.env.GAPI,
+  CALENDAR: process.env.CALENDARID
+}
 global.helpers = require(__dirname + '/config/helpers');
 
 var app = express();

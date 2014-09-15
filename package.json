@@ -8,7 +8,7 @@
   },
   "author": "quentin@devauchelle.eu",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "express": "^4.9.0",
     "googleapis": "^1.0.12",
     "jade": "^1.6.0"
