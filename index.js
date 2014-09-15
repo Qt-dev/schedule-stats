@@ -5,6 +5,7 @@ var config = {
   port: 3000
 }
 global.KEYS = require('./config.json');
+global.helpers = require(__dirname + '/config/helpers');
 
 var app = express();
 
