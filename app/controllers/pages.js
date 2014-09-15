@@ -3,9 +3,13 @@ var calendar = require('googleapis').calendar('v3');
 
 var eventList = [];
 
+
+/************************/
+/** Main Function 
+/************************/
 var getCurrentMonthEventList = function(done){
-  var timeMin = helpers.time.getFirstDayOfMonth(now);
-  var timeMax = helpers.time.getLastDayOfMonth(now);
+  var timeMin = helpers.Time.getFirstDayOfMonth(now);
+  var timeMax = helpers.Time.getLastDayOfMonth(now);
 
   calendar.events.list({
     auth: KEYS.API,
@@ -18,12 +22,16 @@ var getCurrentMonthEventList = function(done){
       done();
     }
 
-    done(list.items);
+
+    var statsBuilder = new helpers.StatsBuilder(list.items);
+    list.stats = statsBuilder.stats;
+    done(list);
   })
 }
 
+
 exports.index = function(req, res){
-  getCurrentMonthEventList(function(events){
-    res.render('pages/index', {events: events});
+  getCurrentMonthEventList(function(eventList){
+    res.render('pages/index', {eventList: eventList});
   });
 }

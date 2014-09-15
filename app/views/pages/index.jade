@@ -6,5 +6,16 @@ block title
 block content
   h1
     block title
-
-  p= testVar
+  
+  ul
+    each stat, key in eventList.stats
+      li
+        h3= key
+        - if(typeof(stat) === 'object')
+          ul
+            each subStat, subStatKey in stat
+              li
+                h5=subStatKey
+                p= subStat
+        - else
+          p= stat
