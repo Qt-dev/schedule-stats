@@ -83,7 +83,7 @@ Subset.prototype = {
   },
   buildStats: function(){
     this.stats = {
-      "Total hours": this.countTotalHours(this.events),
+      "Total hours": this.countTotalHours(this.events, true)
       // Not used anymore
       //"Per Day": this.getDailyStats(this.eventsSortedPerDay)
     }
@@ -95,16 +95,24 @@ Subset.prototype = {
     var end = new Date(event.end.dateTime).valueOf();
     var duration = end - start;
 
-    duration = duration / (1000*60*60)
+    duration = duration / (1000*60)
     return duration;
   },
-  countTotalHours: function(events){
-    var hours = 0;
+  countTotalHours: function(events, withMinutes){
+    var minutes = 0;
+    var result = 0;
     countEventDuration = this.countEventDuration;
     events.forEach(function(event){
-      hours += countEventDuration(event);
+      minutes += countEventDuration(event);
     })
-    return hours;
+    if(withMinutes){
+      var hours = Math.floor(minutes/60)
+      minutes = minutes - (hours*60)
+      result = hours + "h" + minutes;
+    }else {
+      result = (minutes/60).toFixed(2);
+    }
+    return result;
   },
 
   /* STATS GATHERING */
