@@ -9,8 +9,47 @@ var StatsBuilder = function(events){
 
 StatsBuilder.prototype = {
   init: function(){
-    this.events = new Subset(this.events);
-    this.stats["Total"] = this.events.stats;
+    this.setPerSummaryStats();
+    this.setTodoDoneStats();
+    this.setStats("Total", this.events);
+  },
+  setTodoDoneStats: function(){
+    var sortedEvents = this.sortTodoDone();
+    this.setStats("Passed hours", sortedEvents.doneEvents);
+    this.setStats("Hours to come", sortedEvents.todoEvents);
+  },
+  setPerSummaryStats: function(){
+    var sortedEvents = this.sortPerSummary();
+    for(var summary in sortedEvents){
+      this.setStats(summary, sortedEvents[summary]);
+    }
+  },
+  sortTodoDone: function(){
+    var now = new Date();
+    var todoEvents = [];
+    var doneEvents = [];
+    this.events.forEach(function(event){
+      var start = new Date(event.start.dateTime);
+      var end = new Date(event.end.dateTime);
+      if(start < now) {
+        doneEvents.push(event);
+      } else if (end > now){
+        todoEvents.push(event);
+      }
+    })
+    return {doneEvents: doneEvents, todoEvents: todoEvents};
+  },
+  sortPerSummary: function(){
+    var sorted = {}
+    this.events.forEach(function(event){
+      sorted[event.summary] = sorted[event.summary] || [];
+      sorted[event.summary].push(event);
+    })
+    return sorted
+  },
+  setStats: function(title, events){
+    var subset = new Subset(events);
+    this.stats[title] = subset.stats;
   }
 }
 
@@ -74,8 +113,8 @@ Subset.prototype = {
       if (hours < minHours) minHours = hours;
     }
     return {
-      maxHours: maxHours,
-      minHours: minHours
+      "Maximum number of hours": maxHours,
+      "Minimum number of hours": minHours
     }
   }
 } 
