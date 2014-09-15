@@ -7,7 +7,7 @@ module.exports = {
   },
 
   getLastDayOfMonth: function(date){
-    var lastDay = getFirstDayOfMonth(date, true);
+    var lastDay = this.getFirstDayOfMonth(date, true);
     lastDay.setDate(lastDay.getDate() - 1);
 
     return lastDay;
