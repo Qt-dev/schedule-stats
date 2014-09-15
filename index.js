@@ -17,6 +17,7 @@ app.use('/', router);
 // Views
 app.set('view engine', 'jade')
 app.set('views', __dirname + '/app/views');
+app.use(express.static('public'));
 
 if(!module.parent){
   app.set('port', process.env.PORT || config.port);

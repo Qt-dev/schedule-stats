@@ -9,17 +9,17 @@ block content
   
   ul
     each subset, subsetTitle in eventList.stats
-      li
-        h3= subsetTitle
+      li.subset
+        h3.subset-title= subsetTitle
         ul
           each stat, statTitle in subset
-            li
-              h4= statTitle
+            li.stat
+              h4.stat-title= statTitle
               - if(typeof(stat) === 'object')
                 ul
                   each subStat, subStatKey in stat
-                    li
-                      h5=subStatKey
+                    li.substat
+                      h5.substat-title=subStatKey
                       p= subStat
               - else
                 p= stat

@@ -1,0 +1,54 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700);
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+h1 {
+  text-align: center;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul p {
+  padding-left: 10px;
+}
+
+li.subset {
+  display:block;
+  background-color: DarkBlue;
+  color: white;
+  border-radius: 2px;
+  padding: 15px;
+  min-width: 250px;
+  list-style: none;
+  margin: 20px;
+  float:left;
+}
+
+h3.subset-title {
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+}
+
+.stat, .substat {
+  margin-top: 10px;
+  list-style: none;
+
+}
+
+.stat-title, .substat-title {
+  margin: 0;
+  font-weight: normal;
+}
+
+.stat p, .substat p {
+  margin: 0;
+}
