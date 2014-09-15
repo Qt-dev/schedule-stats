@@ -24,14 +24,13 @@ var getCurrentMonthEventList = function(done){
 
 
     var statsBuilder = new helpers.StatsBuilder(list.items);
-    list.stats = statsBuilder.stats;
-    done(list);
+    done(list, statsBuilder.stats);
   })
 }
 
 
 exports.index = function(req, res){
-  getCurrentMonthEventList(function(eventList){
-    res.render('pages/index', {eventList: eventList});
+  getCurrentMonthEventList(function(eventList, stats){
+    res.render('pages/index', {eventList: eventList, stats: stats});
   });
 }
