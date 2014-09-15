@@ -84,7 +84,8 @@ Subset.prototype = {
   buildStats: function(){
     this.stats = {
       "Total hours": this.countTotalHours(this.events),
-      "Per Day": this.getDailyStats(this.eventsSortedPerDay)
+      // Not used anymore
+      //"Per Day": this.getDailyStats(this.eventsSortedPerDay)
     }
   },
 
