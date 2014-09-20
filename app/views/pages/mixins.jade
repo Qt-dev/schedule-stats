@@ -1,5 +1,6 @@
 mixin group(group, groupTitle)
-  div.group
+  - var id = groupTitle.toLowerCase().replace(/\s+/g, '_');
+  div.group(id=id)
     h2= groupTitle
 
     ul
