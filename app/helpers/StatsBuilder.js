@@ -27,7 +27,6 @@ StatsBuilder.prototype = {
   },
   setPerDayStats: function(){
     var sortedEvents = this.sortPerDay();
-    console.log("here");
     for(var day in sortedEvents){
       this.setStats(day, sortedEvents[day], "Per day");
     }
