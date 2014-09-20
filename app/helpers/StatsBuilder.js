@@ -9,6 +9,9 @@ var StatsBuilder = function(events){
 
 StatsBuilder.prototype = {
   init: function(){
+    this.setAllStats();
+  },
+  setAllStats: function(){
     this.setPerSummaryStats();
     this.setTodoDoneStats();
     this.setPerDayStats();
