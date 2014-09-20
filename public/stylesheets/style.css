@@ -37,11 +37,6 @@ h1 {
   color: midnightblue;
 }
 
-h2 > a {
-  text-decoration: none;
-  color:initial;
-}
-
 .group > ul {
   padding-left: 20px;
   height:0;
