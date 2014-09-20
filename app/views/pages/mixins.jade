@@ -1,7 +1,7 @@
 mixin group(group, groupTitle)
   - var id = groupTitle.toLowerCase().replace(/\s+/g, '_');
   div.group(id=id)
-    h2= groupTitle
+    h2=groupTitle
 
     ul
       each subset, subsetTitle in group
