@@ -11,6 +11,7 @@ StatsBuilder.prototype = {
   init: function(){
     this.setPerSummaryStats();
     this.setTodoDoneStats();
+    this.setPerDayStats();
     this.setStats("Total", this.events, "Others");
   },
   setTodoDoneStats: function(){
@@ -24,6 +25,15 @@ StatsBuilder.prototype = {
       this.setStats(summary, sortedEvents[summary], "Per title");
     }
   },
+  setPerDayStats: function(){
+    var sortedEvents = this.sortPerDay();
+    console.log("here");
+    for(var day in sortedEvents){
+      this.setStats(day, sortedEvents[day], "Per day");
+    }
+  },
+
+  /* SORTING METHODS */
   sortTodoDone: function(){
     var now = new Date();
     var todoEvents = [];
@@ -40,13 +50,24 @@ StatsBuilder.prototype = {
     return {doneEvents: doneEvents, todoEvents: todoEvents};
   },
   sortPerSummary: function(){
-    var sorted = {}
+    var sorted = {};
     this.events.forEach(function(event){
       sorted[event.summary] = sorted[event.summary] || [];
       sorted[event.summary].push(event);
     })
     return sorted
   },
+  sortPerDay: function(){
+    var sorted = {};
+    this.events.forEach(function(event){
+      var day = new Date(event.start.dateTime).getDate();
+      sorted[day] = sorted[day] || [];
+      sorted[day].push(event);
+    })
+    return sorted;
+  },
+
+  /* STATS BUILDING */
   setStats: function(title, events, group){
     var subset = new Subset(events);
     this.stats[group] = this.stats[group] || {};
