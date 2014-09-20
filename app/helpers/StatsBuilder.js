@@ -105,8 +105,6 @@ Subset.prototype = {
   buildStats: function(){
     this.stats = {
       "Total hours": this.countTotalHours(this.events, true)
-      // Not used anymore
-      //"Per Day": this.getDailyStats(this.eventsSortedPerDay)
     }
   },
 
@@ -134,22 +132,6 @@ Subset.prototype = {
       result = (minutes/60).toFixed(2);
     }
     return result;
-  },
-
-  /* STATS GATHERING */
-  getDailyStats: function(sortedEvents){
-    var maxHours = 0;
-    var minHours = 24;
-    for(var day in sortedEvents){
-      var events = sortedEvents[day];
-      var hours = this.countTotalHours(events);
-      if (hours > maxHours) maxHours = hours;
-      if (hours < minHours) minHours = hours;
-    }
-    return {
-      "Maximum number of hours": maxHours,
-      "Minimum number of hours": minHours
-    }
   }
 } 
 
