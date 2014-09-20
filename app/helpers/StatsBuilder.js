@@ -12,6 +12,9 @@ StatsBuilder.prototype = {
     this.setPerSummaryStats();
     this.setTodoDoneStats();
     this.setPerDayStats();
+    this.setTotalStats();
+  },
+  setTotalStats: function(){
     this.setStats("Total", this.events, "Others");
   },
   setTodoDoneStats: function(){
