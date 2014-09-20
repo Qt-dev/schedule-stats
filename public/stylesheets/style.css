@@ -3,13 +3,16 @@
 * {
   font-family: 'Open Sans', sans-serif;
 }
-
 body {
   background-color: white;
   margin: 0;
   padding: 0;
 }
 
+
+/********************************************/
+/**************      GROUP      *************/
+/********************************************/
 .group {
   background-color: #f9f9f9;
   width: 96%;
@@ -26,16 +29,28 @@ body {
   border-bottom: 1px solid midnightblue;
 }
 
+/********************************************/
+/*********      GROUP CONTENT      **********/
+/********************************************/
 h1 {
   text-align: center;
   color: midnightblue;
 }
 
-ul {
-  padding-left: 20px;
+h2 > a {
+  text-decoration: none;
+  color:initial;
 }
 
-ul p {
+.group > ul {
+  padding-left: 20px;
+  height:0;
+  margin:0;
+  overflow:hidden;
+}
+
+
+.group > ul p {
   padding-left: 10px;
 }
 
