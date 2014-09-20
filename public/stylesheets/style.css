@@ -39,9 +39,10 @@ h1 {
 
 .group > ul {
   padding-left: 20px;
-  height:0;
   margin:0;
   overflow:hidden;
+  -webkit-transition: height 0.2s; /* For Safari 3.1 to 6.0 */
+  transition: height 0.2s;
 }
 
 
