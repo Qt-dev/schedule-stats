@@ -72,3 +72,18 @@ h3.subset-title {
 .stat p, .substat p {
   margin: 0;
 }
+
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+  body{
+    font-size: 3em;
+  }
+
+  .subset {
+    width:90%;
+    margin-right:2.5%;
+    margin-left:2.5%;
+  }
+}
