@@ -4,6 +4,12 @@
 var StatsBuilder = function(events){
   this.events = events;
   this.stats = {};
+  this.STATSTOBUILD = {
+    perSummary: this.setPerSummaryStats,
+    todoAndDone: this.setTodoDoneStats,
+    perDay: this.setPerDayStats,
+    total: this.setTotalStats
+  } 
   this.init();
 }
 
@@ -12,10 +18,9 @@ StatsBuilder.prototype = {
     this.setAllStats();
   },
   setAllStats: function(){
-    this.setPerSummaryStats();
-    this.setTodoDoneStats();
-    this.setPerDayStats();
-    this.setTotalStats();
+    for(var title in this.STATSTOBUILD){
+      this.STATSTOBUILD[title].call(this);
+    }
   },
   setTotalStats: function(){
     this.setStats("Total", this.events, "Others");
