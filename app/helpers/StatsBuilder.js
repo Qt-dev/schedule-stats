@@ -119,6 +119,21 @@ Subset.prototype = {
     })
     return eventsSortedPerDay;
   },
+  getSplitDaysAndHours: function(sortedEvents){
+    var result = { split: {} , normal: {} };
+    for(var key in result){
+      result[key].days = 0;
+      result[key].hours = 0;
+    }
+    for(var day in sortedEvents){
+      var key = (sortedEvents[day].length === 1) ? "normal" : "split";
+      result[key].days += 1;
+      sortedEvents[day].forEach(function(event){
+        result[key].hours += countEventDuration(event);
+      })
+    }
+    return result;
+  },
   buildStats: function(){
     this.stats = {};
     this.stats["Total hours"] = this.countTotalHours(true);
@@ -152,7 +167,15 @@ Subset.prototype = {
   }, 
   countSplitDays: function(){
     var sortedEvents = this.sortEvents();
-    var result = { "Split": "", "Normal": "" };
+    var splitDaysAndHours = this.getSplitDaysAndHours(sortedEvents);
+    var result = [];
+    for(var key in splitDaysAndHours){
+
+      var title = key.charAt(0).toUpperCase() + key.slice(1);
+      var formattedHours = this.convertMinutesToFullString(splitDaysAndHours[key].hours);
+      var text = title + ": " +splitDaysAndHours[key].days + " Days (" + formattedHours + ")";
+      result.push(text);
+    }
     return result;
   }
 } 
