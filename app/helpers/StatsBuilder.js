@@ -102,6 +102,12 @@ Subset.prototype = {
   },
 
   /* GENERIC METHODS */
+  convertMinutesToFullString: function(minutes){
+      var hours = Math.floor(minutes/60)
+      minutes = minutes - (hours*60)
+      result = hours + "h" + minutes;
+      return result;
+  },
   sortEvents: function(){
     var eventsSortedPerDay = {};
     this.events.forEach(function(event){
@@ -138,9 +144,7 @@ Subset.prototype = {
       minutes += countEventDuration(event);
     })
     if(withMinutes){
-      var hours = Math.floor(minutes/60)
-      minutes = minutes - (hours*60)
-      result = hours + "h" + minutes;
+      result = this.convertMinutesToFullString(minutes);
     }else {
       result = (minutes/60).toFixed(2);
     }
