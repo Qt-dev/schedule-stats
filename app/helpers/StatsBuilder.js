@@ -4,14 +4,25 @@
 var StatsBuilder = function(events){
   this.events = events;
   this.stats = {};
+  this.STATSTOBUILD = {
+    perSummary: this.setPerSummaryStats,
+    todoAndDone: this.setTodoDoneStats,
+    perDay: this.setPerDayStats,
+    total: this.setTotalStats
+  } 
   this.init();
 }
 
 StatsBuilder.prototype = {
   init: function(){
-    this.setPerSummaryStats();
-    this.setTodoDoneStats();
-    this.setPerDayStats();
+    this.setAllStats();
+  },
+  setAllStats: function(){
+    for(var title in this.STATSTOBUILD){
+      this.STATSTOBUILD[title].call(this);
+    }
+  },
+  setTotalStats: function(){
     this.setStats("Total", this.events, "Others");
   },
   setTodoDoneStats: function(){
@@ -27,7 +38,6 @@ StatsBuilder.prototype = {
   },
   setPerDayStats: function(){
     var sortedEvents = this.sortPerDay();
-    console.log("here");
     for(var day in sortedEvents){
       this.setStats(day, sortedEvents[day], "Per day");
     }
