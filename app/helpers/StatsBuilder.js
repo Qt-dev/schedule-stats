@@ -89,8 +89,9 @@ StatsBuilder.prototype = {
 
 
 
-var Subset = function(events){
+var Subset = function(events, daily){
   this.events = events;
+  this.daily = daily;
   this.eventsSortedPerDay = {};
   this.init();
 }
@@ -113,9 +114,8 @@ Subset.prototype = {
     })
   },
   buildStats: function(){
-    this.stats = {
-      "Total hours": this.countTotalHours(this.events, true)
-    }
+    this.stats = {};
+    this.stats["Total hours"] = this.countTotalHours(this.events, true);
   },
 
   /* TOOLS */
