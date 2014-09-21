@@ -19,7 +19,7 @@ mixin stat(stat, statTitle)
     h4.stat-title= statTitle
     - if(typeof(stat) === 'object')
       ul
-        each subStat, subStatTitle in stat
-          +stat(subStat,subStatTitle)
+        each subStat in stat
+          li.stat= subStat
     - else
       p= stat
