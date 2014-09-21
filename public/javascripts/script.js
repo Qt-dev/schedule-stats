@@ -4,9 +4,11 @@ var Selectors = {
   title: ".group > h2",
   content: ".group > ul"
 }
-$(document).ready(function(){
+
+$(window).load(function(){
   App.controller = new Controller(Selectors);
-});
+})
+
 
 // GROUP MODEL
 var Group = function(el){

@@ -89,12 +89,19 @@ h3.subset-title {
 and (min-device-width : 320px) 
 and (max-device-width : 480px) {
   body{
-    font-size: 3em;
+    max-width:100%;
+  }
+  
+  .group > ul {
+    padding: 0;
   }
 
-  .subset {
+  li.subset {
+    min-width:0;
     width:90%;
     margin-right:2.5%;
     margin-left:2.5%;
+    padding-right: 2.5%;
+    padding-left:2.5%;
   }
 }
