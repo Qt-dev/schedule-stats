@@ -39,7 +39,7 @@ StatsBuilder.prototype = {
   setPerDayStats: function(){
     var sortedEvents = this.sortPerDay();
     for(var day in sortedEvents){
-      this.setStats(day, sortedEvents[day], "Per day");
+      this.setStats(day, sortedEvents[day], "Per day", true);
     }
   },
 
@@ -78,8 +78,8 @@ StatsBuilder.prototype = {
   },
 
   /* STATS BUILDING */
-  setStats: function(title, events, group){
-    var subset = new Subset(events);
+  setStats: function(title, events, group, daily){
+    var subset = new Subset(events, daily);
     this.stats[group] = this.stats[group] || {};
     this.stats[group][title] = subset.stats;
   }
@@ -115,7 +115,7 @@ Subset.prototype = {
   },
   buildStats: function(){
     this.stats = {};
-    this.stats["Total hours"] = this.countTotalHours(this.events, true);
+    this.stats["Total hours"] = this.countTotalHours(true);
   },
 
   /* TOOLS */
@@ -127,11 +127,11 @@ Subset.prototype = {
     duration = duration / (1000*60)
     return duration;
   },
-  countTotalHours: function(events, withMinutes){
+  countTotalHours: function(withMinutes){
     var minutes = 0;
     var result = 0;
     countEventDuration = this.countEventDuration;
-    events.forEach(function(event){
+    this.events.forEach(function(event){
       minutes += countEventDuration(event);
     })
     if(withMinutes){
